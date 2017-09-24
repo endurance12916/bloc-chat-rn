@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { NavigationActions } from 'react-navigation'
 
 import rootReducer from './reducers/index';
 
@@ -22,8 +23,9 @@ const defaultState = {
         isSignInWindowVisible: false,
       },
       navReducer: {
-        secondAction,
-        tempNavState
+        secondAction: NavigationActions.navigate({ routeName: 'Login'}),
+        // secondAction: {},
+        tempNavState: {}
       }
 }
 

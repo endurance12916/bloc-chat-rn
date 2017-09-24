@@ -11,6 +11,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+// import { List, ListItem } from 'react-native-elements'
 
 const Rooms = ({
   rooms,
@@ -20,32 +21,47 @@ const Rooms = ({
   showAddRoomWindow, 
   setActiveRoom
 }) => {
+  // renderItem = ({item}) => {
+  //   return (
+  //     <View style={styles.row}>
+  //       {/* <Image style={styles.avatar} source={{uri: item.avatar}} /> */}
+  //       <View style={styles.rowText}>
+  //         <Text style={styles.roomName}>{item.name}</Text>
+  //       </View>
+  //     </View>
+  //   );
+  // }
   renderItem = ({item}) => {
     return (
-      <View style={styles.row}>
-        {/* <Image style={styles.avatar} source={{uri: item.avatar}} /> */}
-        <View style={styles.rowText}>
-          <Text style={styles.roomName}>{item.name}</Text>
-        </View>
-      </View>
-    );
+      <ListItem
+        button
+        onPress={()=>setActiveRoom(item)}
+        title={item.name}
+      />
+    )
   }
 
-  const allRooms = Object.values(rooms).map((room, i) => {
-      return (
-      <NavItem key={room.id} onClick={() => setActiveRoom(room)}>{room.name}</NavItem>
-      )
-  })
+  // const allRooms = Object.values(rooms).map((room, i) => {
+  //     return (
+  //     <NavItem key={room.id} onClick={() => setActiveRoom(room)}>{room.name}</NavItem>
+  //     )
+  // })
   return (
-    <Col sm={3} xsHidden className="room-section">
-      <Col sm={11} smOffset={1}>
-        <h2>Rooms: </h2>
-        <Nav bsStyle="pills" stacked>
-          {allRooms}
-          <NavItem key="add_room" onClick={showAddRoomWindow} className="add-room-pill"> + Add a New Room</NavItem>
-        </Nav>
-      </Col>
-    </Col> 
+    // <Col sm={3} xsHidden className="room-section">
+    //   <Col sm={11} smOffset={1}>
+    //     <h2>Rooms: </h2>
+    //     <Nav bsStyle="pills" stacked>
+    //       {allRooms}
+    //       <NavItem key="add_room" onClick={showAddRoomWindow} className="add-room-pill"> + Add a New Room</NavItem>
+    //     </Nav>
+    //   </Col>
+    // </Col> 
+    <View style={styles.container}>
+      <FlatList
+          data={rooms}
+          renderItem={this.renderItem}
+        />
+    </View>
   )
 }
 const styles = StyleSheet.create({
@@ -70,6 +86,14 @@ const styles = StyleSheet.create({
   },
   roomName: {
     fontSize: 28,
+  },
+  // src/styles.js
+  listItem: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    // width: Dimensions.get('window').width,
+    padding: 10
   },
 });
 export default Rooms;
