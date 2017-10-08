@@ -22,11 +22,6 @@ const defaultState = {
         activeUser: {},
         isSignInWindowVisible: false,
       },
-      navReducer: {
-        secondAction: NavigationActions.navigate({ routeName: 'Login'}),
-        // secondAction: {},
-        tempNavState: {}
-      }
 }
 
 const store = createStore(rootReducer, defaultState, applyMiddleware(thunk));

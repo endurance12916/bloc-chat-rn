@@ -4,12 +4,15 @@ import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
 import LoginScreen from '../containers/LoginScreen.container';
-import MainScreen from '../containers/rooms.container';
+import RoomsScreen from '../containers/rooms.container';
+import MainScreen from '../containers/MainScreen.container';
+import ProfileScreen from '../containers/ProfileScreen.container';
 // import ChatScreen from '../containers/ChatScreen.container';
 
 export const AppNavigator = StackNavigator({
   Login: { screen: LoginScreen },
   Main: { screen: MainScreen },
+  Profile: { screen: ProfileScreen },
   // Chat: { screen: ChatScreen },
 });
 
@@ -23,7 +26,7 @@ AppWithNavigationState.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  nav: state.nav,
+  nav: state.navReducer,
 });
 
 export default connect(mapStateToProps)(AppWithNavigationState);

@@ -19,10 +19,10 @@ const styles = StyleSheet.create({
 const LoginScreen = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>
-      Screen A
+      Welcome to ReactNative Chat!
     </Text>
     <Text style={styles.instructions}>
-      This is great
+      Please log in!
     </Text>
     <Button
       onPress={() => navigation.dispatch({ type: 'Login' })}

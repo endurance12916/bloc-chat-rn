@@ -11,7 +11,12 @@ const initialNavState = AppNavigator.router.getStateForAction(
   tempNavState
 );
 
-function nav(state = initialNavState, action) {
+console.log("firstAction", firstAction);
+console.log("tempNavState", tempNavState);
+console.log("secondAction", secondAction);
+console.log("initialNavState", initialNavState);
+
+export const navReducer = (state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
     case 'Login':
@@ -35,22 +40,8 @@ function nav(state = initialNavState, action) {
   return nextState || state;
 }
 
-const initialAuthState = { isLoggedIn: false };
 
-function auth(state = initialAuthState, action) {
-  switch (action.type) {
-    case 'Login':
-      return { ...state, isLoggedIn: true };
-    case 'Logout':
-      return { ...state, isLoggedIn: false };
-    default:
-      return state;
-  }
-}
-
-const AppReducer = combineReducers({
-  nav,
-  auth,
-});
-
-export default AppReducer;
+// const navReducer = combineReducers({
+//   nav,
+//   auth,
+// });

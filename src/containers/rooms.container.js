@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { subscribeToRooms, showAddRoomWindow, setActiveRoom } from '../actions/actionCreators';
 import Rooms from '../components/rooms.component';
 
-class MainScreen extends Component {
+class RoomsScreen extends Component {
   componentWillMount() {
     this.props.subscribeToRooms();
   }
@@ -23,4 +23,4 @@ export default connect(
     activeRoom: state.roomsReducer.activeRoom,
   }),
   (dispatch) => bindActionCreators({ subscribeToRooms, showAddRoomWindow, setActiveRoom }, dispatch)
-)(MainScreen);
+)(RoomsScreen);

@@ -57,10 +57,11 @@ const Rooms = ({
     //   </Col>
     // </Col> 
     <View style={styles.container}>
-      <FlatList
+      {/* <FlatList */}
+      <Text
           data={rooms}
           renderItem={this.renderItem}
-        />
+      />
     </View>
   )
 }
