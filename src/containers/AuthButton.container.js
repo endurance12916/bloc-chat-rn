@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
+// this component is called by MainScreen.container. This is the logout button at the bottom of the MainScreen.
+
 const AuthButton = ({ logout, loginScreen, isLoggedIn }) => (
   <Button
     title={isLoggedIn ? 'Log Out' : 'Open Login Screen'}

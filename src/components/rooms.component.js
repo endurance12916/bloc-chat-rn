@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button, List, ListItem } from 'react-native-elements';
 import {
   StyleSheet,
   Text,
@@ -13,34 +13,27 @@ import {
 } from 'react-native';
 // import { List, ListItem } from 'react-native-elements'
 
+// function renderRow(rowData, sectionID) {
+//   console.log("renderRow function called")
+//   return (
+//     <ListItem
+//       button
+//       onPress={()=>setActiveRoom(rowData)}
+//       key={sectionID}
+//       title={rowData.name}
+//     />
+//   )
+// }
+
 const Rooms = ({
   rooms,
   isFetchingRooms,
   activeRoom,
   subscribeToRooms, 
   showAddRoomWindow, 
-  setActiveRoom
+  setActiveRoom,
 }) => {
-  // renderItem = ({item}) => {
-  //   return (
-  //     <View style={styles.row}>
-  //       {/* <Image style={styles.avatar} source={{uri: item.avatar}} /> */}
-  //       <View style={styles.rowText}>
-  //         <Text style={styles.roomName}>{item.name}</Text>
-  //       </View>
-  //     </View>
-  //   );
-  // }
-  renderItem = ({item}) => {
-    return (
-      <ListItem
-        button
-        onPress={()=>setActiveRoom(item)}
-        title={item.name}
-      />
-    )
-  }
-
+  console.log("Rooms", rooms)
   // const allRooms = Object.values(rooms).map((room, i) => {
   //     return (
   //     <NavItem key={room.id} onClick={() => setActiveRoom(room)}>{room.name}</NavItem>
@@ -56,13 +49,22 @@ const Rooms = ({
     //     </Nav>
     //   </Col>
     // </Col> 
-    <View style={styles.container}>
-      {/* <FlatList */}
-      <Text
-          data={rooms}
-          renderItem={this.renderItem}
+    <List style={styles.container}>
+      {
+        rooms.map((room, i) => (
+          <ListItem
+            key={i}
+            title={room.name}
+            onPress={()=>setActiveRoom(room)}
+          />
+        ))
+      }
+      <ListItem containerStyle={{backgroundColor: '#aaa'}}
+        key={"addRoom"}
+        title={"Add a New Room"}
+        onPress={showAddRoomWindow}
       />
-    </View>
+    </List>
   )
 }
 const styles = StyleSheet.create({

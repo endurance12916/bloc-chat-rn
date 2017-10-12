@@ -21,9 +21,9 @@ const LoginScreen = ({ navigation }) => (
     <Text style={styles.welcome}>
       Welcome to ReactNative Chat!
     </Text>
-    <Text style={styles.instructions}>
-      Please log in!
-    </Text>
+    {/* <Text style={styles.instructions}>
+      Please log in to continue!
+    </Text> */}
     <Button
       onPress={() => navigation.dispatch({ type: 'Login' })}
       title="Log in"

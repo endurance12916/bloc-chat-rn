@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { subscribeToRooms, showAddRoomWindow, setActiveRoom } from '../actions/actionCreators';
 import Rooms from '../components/rooms.component';
+import { Button, List, ListItem } from 'react-native-elements';
 
 class RoomsScreen extends Component {
   componentWillMount() {
@@ -22,5 +23,9 @@ export default connect(
     rooms: state.roomsReducer.rooms,
     activeRoom: state.roomsReducer.activeRoom,
   }),
-  (dispatch) => bindActionCreators({ subscribeToRooms, showAddRoomWindow, setActiveRoom }, dispatch)
+  (dispatch) => bindActionCreators({ 
+    subscribeToRooms, 
+    showAddRoomWindow, 
+    setActiveRoom 
+  }, dispatch)
 )(RoomsScreen);
