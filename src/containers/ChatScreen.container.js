@@ -30,7 +30,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({subscribeToMessages, addMessage, updateCurrentMessage, submitMessage}, dispatch)
+  return bindActionCreators({
+    subscribeToMessages, 
+    addMessage, 
+    updateCurrentMessage, 
+    submitMessage
+  }, dispatch)
 }
 
 export default connect(

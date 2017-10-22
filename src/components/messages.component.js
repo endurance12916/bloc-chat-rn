@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, List, ListItem } from 'react-native-elements';
+import { Button, List, Listmessage } from 'react-native-elements';
 import {
   StyleSheet,
   Text,
@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   StatusBar,
-  FlatList,
   Image,
 } from 'react-native';
 
@@ -25,52 +24,15 @@ const Messages = ({
   messages,
   submitMessage,
 }) => {
-  // const allMessages = Object.values(messages).map((message, i) => {
-  //   return (
-  //     <li className="messages-body" key={message.createdAt}>
-  //       <div className="username">{message.username}</div>
-  //       <div className="timestamp">{formatTime(message.createdAt)}</div>
-  //       <div className="user-message">{message.text}</div>
-  //     </li>
-  //   )
-  // })
-  renderItem = ({item}) => {
-    return (
-      <View style={styles.row}>
-        {/* <Image style={styles.avatar} source={{uri: item.avatar}} /> */}
-        <View style={styles.rowText}>
-          <Text style={styles.sender}>{item.username}</Text>
-          <Text style={styles.timestamp}>{formatTime(item.createdAt)}</Text>
-          <Text style={styles.message}>{item.text}</Text>
-        </View>
-      </View>
-    );
-  }
   return (
-    // <Col sm={9} className="message-section">
-    //   <h2>{activeRoom.name}</h2>
-    //   <ul className="list-unstyled">{allMessages}</ul>
-    //   <div className="message-input-field">
-    //   <input 
-    //     onChange={(e)=>updateCurrentMessage(e.target.value)} 
-    //     type="text" 
-    //     placeholder="Type your message" 
-    //     className="message-box" 
-    //   />
-    //   &nbsp;
-    //   <Button onClick={()=>submitMessage()}><i className="glyphicon glyphicon-send"></i></Button>
-    //   </div>
-    // </Col>
     <View style={styles.container}>
-      <Text>Let's see if this works</Text>
       {
         messages.map((message, i) => (
-          <ListItem
-            key={i}
-            username={message.username}
-            createdAt={message.createdAt}
-            text={message.text}
-          />
+          <View style={styles.rowText} key={i}>
+            <Text style={styles.sender}>{message.username}</Text>
+            <Text style={styles.timestamp}>{formatTime(message.createdAt)}</Text>
+            <Text style={styles.message}>{message.text}</Text>
+          </View>
         ))
       }
       <KeyboardAvoidingView behavior="padding">
