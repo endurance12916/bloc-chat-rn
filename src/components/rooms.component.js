@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button, List, ListItem } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   Text,
@@ -11,19 +13,6 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-// import { List, ListItem } from 'react-native-elements'
-
-// function renderRow(rowData, sectionID) {
-//   console.log("renderRow function called")
-//   return (
-//     <ListItem
-//       button
-//       onPress={()=>setActiveRoom(rowData)}
-//       key={sectionID}
-//       title={rowData.name}
-//     />
-//   )
-// }
 
 const Rooms = ({
   rooms,
@@ -32,30 +21,20 @@ const Rooms = ({
   subscribeToRooms, 
   showAddRoomWindow, 
   setActiveRoom,
+  dispatch,
 }) => {
-  console.log("Rooms", rooms)
-  // const allRooms = Object.values(rooms).map((room, i) => {
-  //     return (
-  //     <NavItem key={room.id} onClick={() => setActiveRoom(room)}>{room.name}</NavItem>
-  //     )
-  // })
   return (
-    // <Col sm={3} xsHidden className="room-section">
-    //   <Col sm={11} smOffset={1}>
-    //     <h2>Rooms: </h2>
-    //     <Nav bsStyle="pills" stacked>
-    //       {allRooms}
-    //       <NavItem key="add_room" onClick={showAddRoomWindow} className="add-room-pill"> + Add a New Room</NavItem>
-    //     </Nav>
-    //   </Col>
-    // </Col> 
     <List style={styles.container}>
       {
         rooms.map((room, i) => (
           <ListItem
             key={i}
             title={room.name}
-            onPress={()=>setActiveRoom(room)}
+            onPress={()=>{
+              setActiveRoom(room);
+              dispatch(NavigationActions.navigate({ routeName: 'Chat' }))
+              }
+            }
           />
         ))
       }
@@ -67,6 +46,11 @@ const Rooms = ({
     </List>
   )
 }
+
+// Rooms.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

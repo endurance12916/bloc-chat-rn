@@ -6,7 +6,7 @@ import Messages from '../components/messages.component';
 import debounce from 'lodash/debounce';
 import { StackNavigator } from 'react-navigation';
 
-class MessagesContainer extends Component {
+class ChatScreen extends Component {
   static navigationOptions = {
     title: 'Welcome',
   };
@@ -35,4 +35,4 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps, mapDispatchToProps
-)(MessagesContainer);
+)(ChatScreen);

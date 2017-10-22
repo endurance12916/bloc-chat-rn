@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button, List, ListItem } from 'react-native-elements';
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+
 
 function formatTime(time) {
   let d = new Date(time);
@@ -62,10 +63,16 @@ const Messages = ({
     // </Col>
     <View style={styles.container}>
       <Text>Let's see if this works</Text>
-      <FlatList
-        data={messages}
-        renderItem={this.renderItem}
-      />
+      {
+        messages.map((message, i) => (
+          <ListItem
+            key={i}
+            username={message.username}
+            createdAt={message.createdAt}
+            text={message.text}
+          />
+        ))
+      }
       <KeyboardAvoidingView behavior="padding">
         {/* <View style={styles.footer}>
           <TextInput

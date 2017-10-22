@@ -7,13 +7,14 @@ import LoginScreen from '../containers/LoginScreen.container';
 import RoomsScreen from '../containers/RoomsScreen.container';
 import MainScreen from '../containers/MainScreen.container';
 import ProfileScreen from '../containers/ProfileScreen.container';
-// import ChatScreen from '../containers/ChatScreen.container';
+import ChatScreen from '../containers/ChatScreen.container';
 
 export const AppNavigator = StackNavigator({
   Login: { screen: LoginScreen },
   Main: { screen: MainScreen },
   Profile: { screen: ProfileScreen },
   Rooms: { screen: RoomsScreen },
+  Chat: { screen: ChatScreen },
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
