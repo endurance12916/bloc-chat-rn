@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'react-native';
+import { Button, Text, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 // this component is called by MainScreen.container. This is the logout button at the bottom of the MainScreen.
 
-const AuthButton = ({ logout, loginScreen, isLoggedIn }) => (
-  <Button
-    title={isLoggedIn ? 'Log Out' : 'Open Login Screen'}
-    onPress={isLoggedIn ? logout : loginScreen}
-  />
+const AuthButton = ({ logout, loginScreen, isLoggedIn }) => {
+  return (
+    <Button
+      title={isLoggedIn ? 'Log Out' : 'Open Login Screen'}
+      onPress={isLoggedIn ? logout : loginScreen}
+    />
 );
+}
 
 AuthButton.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,

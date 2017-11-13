@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { subscribeToRooms, showAddRoomWindow, setActiveRoom } from '../actions/actionCreators';
-import Rooms from '../components/rooms.component';
+import Rooms from '../components/Rooms.component';
 
 class RoomsScreen extends Component {
   componentWillMount() {

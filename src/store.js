@@ -5,23 +5,22 @@ import { NavigationActions } from 'react-navigation'
 import rootReducer from './reducers/index';
 
 const defaultState = {
-      roomsReducer: {
-        isFetchingRooms: false,
-        isAddingRoomToServer: false,
-        rooms: [],
-        isAddRoomWindowVisible: false,
-        activeRoom: {}, 
-      },
-      messagesReducer: {
-        isFetchingMessages: false,
-        isAddingMessageToServer: false,
-        messages: [],
-        currentMessage: 'default message',
-      },
-      userReducer: {
-        activeUser: {},
-        isSignInWindowVisible: false,
-      },
+      // roomsReducer: {
+      //   isFetchingRooms: false,
+      //   isAddingRoomToServer: false,
+      //   rooms: [],
+      //   isAddRoomWindowVisible: false,
+      //   activeRoom: {}, 
+      // },
+      // messagesReducer: {
+      //   isFetchingMessages: false,
+      //   isAddingMessageToServer: false,
+      //   messages: [],
+      //   currentMessage: 'default message',
+      // },
+      // userReducer: {
+      //   activeUser: {},
+      // },
 }
 
 const store = createStore(rootReducer, defaultState, applyMiddleware(thunk));

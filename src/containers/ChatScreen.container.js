@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { subscribeToMessages, addMessage, updateCurrentMessage, submitMessage } from '../actions/actionCreators';
-import Messages from '../components/messages.component';
+import Messages from '../components/Messages.component';
 import debounce from 'lodash/debounce';
 import { StackNavigator } from 'react-navigation';
 
 class ChatScreen extends Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'Group Chat',
   };
   render() {
     const updateCurrentMessageDebounce = debounce(this.props.updateCurrentMessage, 200);

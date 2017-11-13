@@ -15,9 +15,9 @@ function createRoom(state = [], action) {
 
 export const roomsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'START_FETCHING_ROOMS':
-      console.log("reducer - isFetchingRooms: true");
-      return {...state, isFetchingRooms: true};
+    // case 'START_FETCHING_ROOMS':
+    //   console.log("reducer - isFetchingRooms: true");
+    //   return {...state, isFetchingRooms: true};
     case 'FETCH_ROOMS_FULFILLED':
       console.log("reducer - isFetchingRooms: false");
       return {...state, 

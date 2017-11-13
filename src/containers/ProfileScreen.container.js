@@ -1,30 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setActiveUser } from '../actions/actionCreators';
+import Profile from '../components/Profile.component';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
-
-const ProfileScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>
-      My Profile
-    </Text>
-  </View>
-);
+class ProfileScreen extends Component {
+  render() {
+    return (
+      <Profile {...this.props}/>
+    )
+  }
+}
 
 ProfileScreen.navigationOptions = {
   title: 'Profile',
 };
 
-export default ProfileScreen;
+export default connect(
+  (state) => ({activeUser: state.userReducer.activeUser}),
+  (dispatch) => bindActionCreators({setActiveUser}, dispatch)
+)(ProfileScreen);

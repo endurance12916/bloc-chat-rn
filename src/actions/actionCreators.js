@@ -18,7 +18,7 @@ export const subscribeToRooms = () => {
 }
 
 export const addRoom = (room) => {
-  return function (dispatch) {
+  return (dispatch) => {
     dispatch(addRoomRequestedAction());
     const roomsRef = firebase.database().ref('rooms/')
     roomsRef.push(room)
@@ -44,17 +44,17 @@ const addRoomRejectedAction = () => ({
   type: 'ADD_ROOM_REJECTED',
 });
 
-export function showAddRoomWindow() {
-  return {
-    type: 'SHOW_ADD_ROOM',
-  };
-}
+// export function showAddRoomWindow() {
+//   return {
+//     type: 'SHOW_ADD_ROOM',
+//   };
+// }
 
-export function hideAddRoomWindow() {
-  return {
-    type: 'HIDE_ADD_ROOM',
-  };
-}
+// export function hideAddRoomWindow() {
+//   return {
+//     type: 'HIDE_ADD_ROOM',
+//   };
+// }
 
 function setActiveRoomAction(room) {
   return {
@@ -150,20 +150,27 @@ export function setActiveUser(username) {
   };
 }
 
+export const usernameChanged = (text) => {
+  return {
+    type: 'USERNAME_CHANGED',
+    payload: text
+  };
+};
+
 export const logOutAction = () => ({
   type: 'LOG_OUT'
 });
 
 
-export function showSignInWindow() {
-  return {
-    type: 'SHOW_SIGN_IN',
-  };
-}
+// export function showSignInWindow() {
+//   return {
+//     type: 'SHOW_SIGN_IN',
+//   };
+// }
 
-export function hideSignInWindow() {
-  return {
-    type: 'HIDE_SIGN_IN',
-  };
-}
+// export function hideSignInWindow() {
+//   return {
+//     type: 'HIDE_SIGN_IN',
+//   };
+// }
 

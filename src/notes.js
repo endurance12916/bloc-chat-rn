@@ -19,3 +19,8 @@
   // In this case, the initialState to createStore() is useful because it lets you optionally hydrate some parts of the tree where you have pre-populated data. In this case, it would “win” to the reducer default state which is usually the behavior you would want. The parts of the state tree that exist in initialState would be used as is, and the missing parts would be retrieved from the reducers. This makes it possible to “restore” some parts of the state, but always re-initialize the others.
 // 15. to deploy firebase, run >npm run build and change to "public": "build" in firebase.json
 // 16. Provider provides context - {store: this.props.store} to its children by rendering this.props.children
+
+// From Udemy course:
+// 1. ReactNative is a portal to mobile device. it takes the output of a component and put it on a screen
+// 2. react is solely for showing something and watching for an event, while redux is responsible for keeping track of states and decide how to interpretate or handle these events
+// 3. Redux-Thunk is a middleware that makes actioncreators return functions that you can dispatch, instead of action objects

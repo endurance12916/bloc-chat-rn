@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setActiveUser } from '../actions/actionCreators';
+import { setActiveUser, usernameChanged } from '../actions/actionCreators';
+import _ from 'lodash';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,30 +25,42 @@ const styles = StyleSheet.create({
   },
 });
 
-
-const LoginScreen = ({ navigation }) => {
-  handleSubmit = (event) => {
-    console.log('event', event)
-    event.preventDefault();
-    let userName = this.userName;
-    this.props.setActiveUser(userName.value);
-    Cookies.set('user', userName.value);
-    console.log('handleSubmit called', this.props.activeUser)
+class LoginScreen extends Component {
+  onButtonPress() {
+    if (_.isEmpty(this.props.username)) {
+      return alert('Please create an username.')
+    }
+    let username = this.props.username;
+    // console.log('username', username)
+    this.props.setActiveUser(username);
+    // console.log('handleSubmit called, activeUser is', this.props.activeUser.username)
+    this.props.navigation.dispatch({ type: 'Login' })
   }
+
+  onUsernameChange(text) {
+    this.props.usernameChanged(text);
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to ReactNative Chat!
         </Text>
         <FormLabel>Create an username</FormLabel>
-        <FormInput style={styles.username}/>
+        <FormInput 
+          ref={input => this.input = input} 
+          style={styles.username}
+          onChangeText={this.onUsernameChange.bind(this)}
+          />
         <Button
-          onPress={(event) => {this.handleSubmit;navigation.dispatch({ type: 'Login' });}}
+          onPress={this.onButtonPress.bind(this)}
           title="Log in"
         />
       </View>
     );
   }
+}
 
 LoginScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
@@ -57,9 +70,7 @@ LoginScreen.navigationOptions = {
   title: 'Log In',
 };
 
-// export default LoginScreen;
-
 export default connect(
-  (state) => ({activeUser: state.userReducer.activeUser}),
-  (dispatch) => bindActionCreators({setActiveUser}, dispatch)
+  (state) => ({activeUser: state.userReducer.activeUser, username: state.userReducer.username}),
+  (dispatch) => bindActionCreators({setActiveUser, usernameChanged}, dispatch)
 )(LoginScreen);
