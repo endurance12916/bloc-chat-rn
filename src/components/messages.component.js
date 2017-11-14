@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, List, Listmessage } from 'react-native-elements';
+// import { Button, List, Listmessage } from 'react-native-elements';
 import {
   StyleSheet,
   Text,
@@ -48,6 +48,18 @@ const Messages = ({
             <Text style={styles.send}>Send</Text>
           </TouchableOpacity>
         </View> */}
+        <View style={styles.footer}>
+          <TextInput
+            /* value={input => this.input = input} */
+            style={styles.input}
+            underlineColorAndroid="transparent"
+            placeholder="Type something nice"
+            onChangeText={(text)=>updateCurrentMessage(text)}
+          />
+          <TouchableOpacity onPress={()=>submitMessage()}>
+            <Text style={styles.send}>Send</Text>
+          </TouchableOpacity>
+        </View>
       </KeyboardAvoidingView>
     </View>
   )
@@ -64,12 +76,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
-  avatar: {
-    borderRadius: 20,
-    width: 40,
-    height: 40,
-    marginRight: 10,
-  },
+  // avatar: {
+  //   borderRadius: 20,
+  //   width: 40,
+  //   height: 40,
+  //   marginRight: 10,
+  // },
   rowText: {
     flex: 1,
   },

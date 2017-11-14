@@ -11,9 +11,10 @@ class ChatScreen extends Component {
     title: 'Group Chat',
   };
   render() {
-    const updateCurrentMessageDebounce = debounce(this.props.updateCurrentMessage, 200);
+    // const updateCurrentMessageDebounce = debounce(this.props.updateCurrentMessage, 200);
     return (
-      <Messages {...this.props} updateCurrentMessage={updateCurrentMessageDebounce} />
+      // <Messages {...this.props} updateCurrentMessage={updateCurrentMessageDebounce} />
+      <Messages {...this.props} />
     )
   }
 }

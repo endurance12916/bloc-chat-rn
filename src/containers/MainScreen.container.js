@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import LoginStatusMessage from './LoginStatusMessage.container';
 import AuthButton from './AuthButton.container';
 

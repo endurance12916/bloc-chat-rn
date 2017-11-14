@@ -31,9 +31,7 @@ class LoginScreen extends Component {
       return alert('Please create an username.')
     }
     let username = this.props.username;
-    // console.log('username', username)
     this.props.setActiveUser(username);
-    // console.log('handleSubmit called, activeUser is', this.props.activeUser.username)
     this.props.navigation.dispatch({ type: 'Login' })
   }
 

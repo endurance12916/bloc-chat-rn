@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setActiveUser } from '../actions/actionCreators';
@@ -18,6 +17,5 @@ ProfileScreen.navigationOptions = {
 };
 
 export default connect(
-  (state) => ({activeUser: state.userReducer.activeUser}),
-  (dispatch) => bindActionCreators({setActiveUser}, dispatch)
+  (state) => ({activeUser: state.userReducer.activeUser})
 )(ProfileScreen);

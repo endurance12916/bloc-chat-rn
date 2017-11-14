@@ -88,7 +88,10 @@ export const subscribeToMessages = (roomId) => {
 }
 
 export const addMessage = (message, roomId) => {
+  Object.keys(message).forEach((key) => (message[key] == null) && delete message[key]); // A simple one-liner to remove the items 'inline' without assignment. This is to solve the error of firebase: first argument contains undefined in property
+  console.log('message added after removing null', message)
   return function (dispatch) {
+    console.log('addMessage action called')
     dispatch(addMessageRequestedAction());
     const messagesRef = firebase.database().ref('messages/'+roomId+'/')
     messagesRef.push(message)
@@ -115,6 +118,7 @@ const addMessageRejectedAction = () => ({
 });
 
 export function updateCurrentMessage(text) {
+  console.log('current message', text)
   return {
     type: 'UPDATE_CURRENT_MESSAGE',
     text
@@ -157,9 +161,9 @@ export const usernameChanged = (text) => {
   };
 };
 
-export const logOutAction = () => ({
-  type: 'LOG_OUT'
-});
+// export const logOutAction = () => ({
+//   type: 'LOG_OUT'
+// });
 
 
 // export function showSignInWindow() {
