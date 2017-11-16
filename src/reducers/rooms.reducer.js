@@ -1,8 +1,9 @@
 const initialState = {
   isFetchingRooms: false,
+  newRoomName: '',
   isAddingRoomToServer: false,
   rooms: [],
-  isAddRoomWindowVisible: false,
+  isAddRoomModalVisible: false,
   activeRoom: {},
 }
 
@@ -30,12 +31,15 @@ export const roomsReducer = (state = initialState, action) => {
     case 'ADD_ROOM_FULFILLED':
       console.log("reducer - isAddingRoomToServer: false");
       return {...state, isAddingRoomToServer: false};
-    // case 'SHOW_ADD_ROOM': 
-    //   console.log("reducer - show add room window");
-    //   return {...state, isAddRoomWindowVisible: true};
-    // case 'HIDE_ADD_ROOM':
-    //   console.log("reducer - hide add room window");
-    //   return {...state, isAddRoomWindowVisible: false};
+    case 'SHOW_ADD_ROOM': 
+      console.log("reducer - show add room window");
+      return {...state, isAddRoomModalVisible: true};
+    case 'HIDE_ADD_ROOM':
+      console.log("reducer - hide add room window");
+      return {...state, isAddRoomModalVisible: false};
+    case 'UPDATE_NEW_ROOM_NAME':
+      console.log("reducer - is updating new room name");
+      return {...state, newRoomName: action.text};
     case 'SET_ACTIVE_ROOM':
       console.log("reducer - set active room to ", action.room);
       return {...state, activeRoom: action.room};

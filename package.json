@@ -28,6 +28,7 @@
     "react-native-form-generator": "^0.9.9",
     "react-native-gifted-chat": "^0.2.9",
     "react-native-material-kit": "^0.4.1",
+    "react-native-modal": "^4.1.1",
     "react-native-module": "0.0.1",
     "react-navigation": "^1.0.0-beta.11",
     "redux-thunk": "^2.2.0"

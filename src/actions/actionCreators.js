@@ -17,7 +17,16 @@ export const subscribeToRooms = () => {
   }
 }
 
+export function updateNewRoomName(text) {
+  console.log('new room name', text)
+  return {
+    type: 'UPDATE_NEW_ROOM_NAME',
+    text
+  };
+} 
+
 export const addRoom = (room) => {
+  console.log('room being added', room)
   return (dispatch) => {
     dispatch(addRoomRequestedAction());
     const roomsRef = firebase.database().ref('rooms/')
@@ -44,17 +53,17 @@ const addRoomRejectedAction = () => ({
   type: 'ADD_ROOM_REJECTED',
 });
 
-// export function showAddRoomWindow() {
-//   return {
-//     type: 'SHOW_ADD_ROOM',
-//   };
-// }
+export function showAddRoomModal() {
+  return {
+    type: 'SHOW_ADD_ROOM',
+  };
+}
 
-// export function hideAddRoomWindow() {
-//   return {
-//     type: 'HIDE_ADD_ROOM',
-//   };
-// }
+export function hideAddRoomModal() {
+  return {
+    type: 'HIDE_ADD_ROOM',
+  };
+}
 
 function setActiveRoomAction(room) {
   return {

@@ -13,13 +13,26 @@ import {
   FlatList,
   Image,
 } from 'react-native';
+import Modal from 'react-native-modal'
+
+renderButton = (text, onPress) => (
+  <TouchableOpacity onPress={onPress}>
+    <View style={styles.button}>
+      <Text>{text}</Text>
+    </View>
+  </TouchableOpacity>
+);
 
 const Rooms = ({
+  handleSubmit,
   rooms,
   isFetchingRooms,
   activeRoom,
   subscribeToRooms, 
-  showAddRoomWindow, 
+  isAddRoomModalVisible,
+  showAddRoomModal, 
+  hideAddRoomModal,
+  updateNewRoomName,
   setActiveRoom,
   dispatch,
 }) => {
@@ -41,8 +54,23 @@ const Rooms = ({
       <ListItem containerStyle={{backgroundColor: '#aaa'}}
         key={"addRoom"}
         title={"Add a New Room"}
-        onPress={showAddRoomWindow}
+        onPress={showAddRoomModal}
       />
+      <Modal isVisible={isAddRoomModalVisible}>
+        <View style={styles.modalContent}>
+          <Text>Name of New Room:</Text>
+          <TextInput
+            style={styles.input}
+            underlineColorAndroid="transparent"
+            placeholder="Room Name"
+            onChangeText={(text)=>updateNewRoomName(text)}
+          />
+          <TouchableOpacity onPress={handleSubmit}>
+            <Text style={styles.send}>Send</Text>
+          </TouchableOpacity>
+          {this.renderButton('Close', hideAddRoomModal)}
+        </View>
+      </Modal>
     </List>
   )
 }
