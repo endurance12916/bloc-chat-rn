@@ -31,6 +31,12 @@ export const navReducer = (state = initialNavState, action) => {
         state
       );
       break;
+    case 'SET_ACTIVE_ROOM':
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Chat' }),
+        state
+      );
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

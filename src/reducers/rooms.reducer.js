@@ -38,11 +38,14 @@ export const roomsReducer = (state = initialState, action) => {
       console.log("reducer - hide add room window");
       return {...state, isAddRoomModalVisible: false};
     case 'UPDATE_NEW_ROOM_NAME':
-      console.log("reducer - is updating new room name");
+      // console.log("reducer - is updating new room name");
       return {...state, newRoomName: action.text};
     case 'SET_ACTIVE_ROOM':
       console.log("reducer - set active room to ", action.room);
       return {...state, activeRoom: action.room};
+    case 'REMOVE_DISPLAYED_ROOMS':
+      console.log("reducer - remove displayed rooms before fetch");
+      return {...state, rooms:[]}
     default:
       return state
   }

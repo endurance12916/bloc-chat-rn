@@ -17,8 +17,12 @@ export const subscribeToRooms = () => {
   }
 }
 
+export const removeDisplayedRooms = () => ({ // this function works as unsubscribe
+  type: 'REMOVE_DISPLAYED_ROOMS'
+});
+
 export function updateNewRoomName(text) {
-  console.log('new room name', text)
+  // console.log('new room name', text)
   return {
     type: 'UPDATE_NEW_ROOM_NAME',
     text
@@ -76,16 +80,11 @@ export const setActiveRoom = (room) => {
   return function (dispatch) {
     dispatch(removeDisplayedMessagesAction());
     dispatch(setActiveRoomAction(room));
-    dispatch(subscribeToMessages(room.id)); 
+    dispatch(subscribeToMessages(room.id)); //maybe double counting here?
   }
 }
 
-const fetchMessagesFulfilledAction = (message) => ({
-    type: 'FETCH_MESSAGES_FULFILLED',
-    message
-});
-
-export const subscribeToMessages = (roomId) => {
+const subscribeToMessages = (roomId) => {
   return function(dispatch) {
     firebase.database()
     .ref('messages/'+roomId+'/')
@@ -96,16 +95,20 @@ export const subscribeToMessages = (roomId) => {
   }
 }
 
+const fetchMessagesFulfilledAction = (message) => ({
+  type: 'FETCH_MESSAGES_FULFILLED',
+  message
+});
+
 export const addMessage = (message, roomId) => {
   Object.keys(message).forEach((key) => (message[key] == null) && delete message[key]); // A simple one-liner to remove the items 'inline' without assignment. This is to solve the error of firebase: first argument contains undefined in property
-  console.log('message added after removing null', message)
   return function (dispatch) {
     console.log('addMessage action called')
     dispatch(addMessageRequestedAction());
     const messagesRef = firebase.database().ref('messages/'+roomId+'/')
     messagesRef.push(message)
             .then(() => {
-              dispatch(addMessageFulfilledAction(message));
+              dispatch(addMessageFulfilledAction());
             })
             .catch((error) => {
               dispatch(addMessageRejectedAction());
@@ -117,9 +120,8 @@ const addMessageRequestedAction = () => ({
   type: 'START_ADDING_MESSAGE'
 });
 
-const addMessageFulfilledAction = (message) => ({
+const addMessageFulfilledAction = () => ({
   type: 'ADD_MESSAGE_FULFILLED',
-  message
 });
 
 const addMessageRejectedAction = () => ({
@@ -127,7 +129,6 @@ const addMessageRejectedAction = () => ({
 });
 
 export function updateCurrentMessage(text) {
-  console.log('current message', text)
   return {
     type: 'UPDATE_CURRENT_MESSAGE',
     text
@@ -144,8 +145,6 @@ export function submitMessage() {
     const state = getState();
     if (_.isEmpty(state.userReducer.activeUser)) {
       return alert('Please sign in first.')
-    } else if (_.isEmpty(state.roomsReducer.activeRoom)) {
-      return alert('Please select or create a room first.')
     } else {
       dispatch(addMessage({
         username: state.userReducer.activeUser.username,

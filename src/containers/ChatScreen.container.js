@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { subscribeToMessages, addMessage, updateCurrentMessage, submitMessage } from '../actions/actionCreators';
-import Messages from '../components/Messages.component';
+import { addMessage, updateCurrentMessage, submitMessage } from '../actions/actionCreators';
+import ChatMessages from '../components/ChatMessages.component';
 import debounce from 'lodash/debounce';
 import { StackNavigator } from 'react-navigation';
 
 class ChatScreen extends Component {
   static navigationOptions = {
-    title: 'Group Chat',
+    title: 'Chat Screen',
   };
+
   render() {
     // const updateCurrentMessageDebounce = debounce(this.props.updateCurrentMessage, 200);
     return (
       // <Messages {...this.props} updateCurrentMessage={updateCurrentMessageDebounce} />
-      <Messages {...this.props} />
+      <ChatMessages {...this.props} />
     )
   }
 }
@@ -32,7 +33,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    subscribeToMessages, 
+    // subscribeToMessages, 
     addMessage, 
     updateCurrentMessage, 
     submitMessage

@@ -1,14 +1,15 @@
 import React from 'react';
 // import { Button, List, Listmessage } from 'react-native-elements';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  StatusBar,
-  Image,
+  // StatusBar,
+  // Image,
 } from 'react-native';
 
 
@@ -17,7 +18,7 @@ function formatTime(time) {
   return (''+d).slice(0,24);
 }
 
-const Messages = ({
+const ChatMessages = ({
   updateCurrentMessage,
   currentMessage,
   activeRoom,
@@ -26,37 +27,29 @@ const Messages = ({
 }) => {
   return (
     <View style={styles.container}>
+    <ScrollView>
       {
         messages.map((message, i) => (
           <View style={styles.rowText} key={i}>
-            <Text style={styles.sender}>{message.username}</Text>
-            <Text style={styles.timestamp}>{formatTime(message.createdAt)}</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.sender}>{message.username}</Text>
+              <Text style={styles.timestamp}>{formatTime(message.createdAt)}</Text>
+            </View>
             <Text style={styles.message}>{message.text}</Text>
           </View>
         ))
       }
+    </ScrollView>
       <KeyboardAvoidingView behavior="padding">
-        {/* <View style={styles.footer}>
-          <TextInput
-            value={this.state.typing}
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Type something nice"
-            onChangeText={text => this.setState({typing: text})}
-          />
-          <TouchableOpacity onPress={this.sendMessage}>
-            <Text style={styles.send}>Send</Text>
-          </TouchableOpacity>
-        </View> */}
         <View style={styles.footer}>
           <TextInput
-            /* value={input => this.input = input} */
+            ref={ref => this.textInputRef = ref}
             style={styles.input}
             underlineColorAndroid="transparent"
-            placeholder="Type something nice"
+            placeholder="Type your message here..."
             onChangeText={(text)=>updateCurrentMessage(text)}
           />
-          <TouchableOpacity onPress={()=>submitMessage()}>
+          <TouchableOpacity onPress={()=>{submitMessage(); this.textInputRef.clear()}}>
             <Text style={styles.send}>Send</Text>
           </TouchableOpacity>
         </View>
@@ -67,15 +60,17 @@ const Messages = ({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
+    justifyContent: 'space-between',
   },
-  row: {
-    flexDirection: 'row',
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
+  // row: {
+  //   flexDirection: 'row',
+  //   padding: 20,
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: '#eee',
+  // },
   // avatar: {
   //   borderRadius: 20,
   //   width: 40,
@@ -83,10 +78,15 @@ const styles = StyleSheet.create({
   //   marginRight: 10,
   // },
   rowText: {
-    flex: 1,
+    // flex: 1,
+    flexDirection: 'column',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
   message: {
     fontSize: 18,
+    marginTop: 10,
   },
   sender: {
     fontWeight: 'bold',
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: 'row',
     backgroundColor: '#eee',
+    
   },
   input: {
     paddingHorizontal: 20,
@@ -110,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Messages;
+export default ChatMessages;

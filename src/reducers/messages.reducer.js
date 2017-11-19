@@ -17,7 +17,7 @@ export const messagesReducer = (state = initialState, action) => {
         messages: [...state.messages, createMessage(state, action)]
       };
     case 'REMOVE_DISPLAYED_MESSAGES':
-      console.log("reducer - remove displayed messages")
+      console.log("reducer - remove displayed messages before fetching")
       return {...state, messages: []};
     case 'START_ADDING_MESSAGE':
       console.log("reducer - isAddingMessageToServer: true, start adding message");
@@ -26,7 +26,7 @@ export const messagesReducer = (state = initialState, action) => {
       console.log("reducer - isAddingMessageToServer: false, add message fulfilled");
       return {...state, isAddingMessageToServer: false}
     case 'UPDATE_CURRENT_MESSAGE':
-      console.log("reducer - is updating current message");
+      // console.log("reducer - is updating current message");
       return {...state, currentMessage: action.text};
     default:
       return state

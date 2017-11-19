@@ -3,15 +3,16 @@ import { Button, List, ListItem } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 import {
+  ScrollView,
   StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  StatusBar,
-  FlatList,
-  Image,
+  // KeyboardAvoidingView,
+  // StatusBar,
+  // FlatList,
+  // Image,
 } from 'react-native';
 import Modal from 'react-native-modal'
 
@@ -24,11 +25,11 @@ renderButton = (text, onPress) => (
 );
 
 const Rooms = ({
-  handleSubmit,
+  handleSubmitAddRoom,
   rooms,
-  isFetchingRooms,
-  activeRoom,
-  subscribeToRooms, 
+  // isFetchingRooms,
+  // activeRoom,
+  // subscribeToRooms, 
   isAddRoomModalVisible,
   showAddRoomModal, 
   hideAddRoomModal,
@@ -37,41 +38,43 @@ const Rooms = ({
   dispatch,
 }) => {
   return (
-    <List style={styles.container}>
-      {
-        rooms.map((room, i) => (
-          <ListItem
-            key={i}
-            title={room.name}
-            onPress={()=>{
-              setActiveRoom(room);
-              dispatch(NavigationActions.navigate({ routeName: 'Chat' }))
+    <ScrollView>
+      <List style={styles.container}>
+        {
+          rooms.map((room, i) => (
+            <ListItem
+              key={i}
+              title={room.name}
+              onPress={()=>{
+                setActiveRoom(room);
+                // dispatch(NavigationActions.navigate({ routeName: 'Chat' })) // moving this line to nav.reducer seems to have fixed the double navigation problem
+                }
               }
-            }
-          />
-        ))
-      }
-      <ListItem containerStyle={{backgroundColor: '#aaa'}}
-        key={"addRoom"}
-        title={"Add a New Room"}
-        onPress={showAddRoomModal}
-      />
-      <Modal isVisible={isAddRoomModalVisible}>
-        <View style={styles.modalContent}>
-          <Text>Name of New Room:</Text>
-          <TextInput
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            placeholder="Room Name"
-            onChangeText={(text)=>updateNewRoomName(text)}
-          />
-          <TouchableOpacity onPress={handleSubmit}>
-            <Text style={styles.send}>Send</Text>
-          </TouchableOpacity>
-          {this.renderButton('Close', hideAddRoomModal)}
-        </View>
-      </Modal>
-    </List>
+            />
+          ))
+        }
+        <ListItem containerStyle={{backgroundColor: '#aaa'}}
+          key={"addRoom"}
+          title={"Add a New Room"}
+          onPress={showAddRoomModal}
+        />
+        <Modal isVisible={isAddRoomModalVisible}>
+          <View style={styles.modalContent}>
+            <Text>Name of New Room:</Text>
+            <TextInput
+              style={styles.input}
+              underlineColorAndroid="transparent"
+              placeholder="Room Name"
+              onChangeText={(text)=>updateNewRoomName(text)}
+            />
+            <TouchableOpacity onPress={handleSubmitAddRoom}>
+              <Text style={styles.send}>Send</Text>
+            </TouchableOpacity>
+            {this.renderButton('Cancel', hideAddRoomModal)}
+          </View>
+        </Modal>
+      </List>
+    </ScrollView>
   )
 }
 
