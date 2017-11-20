@@ -19,7 +19,7 @@ import Modal from 'react-native-modal'
 renderButton = (text, onPress) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.button}>
-      <Text>{text}</Text>
+      <Text style={styles.send}>{text}</Text>
     </View>
   </TouchableOpacity>
 );
@@ -53,24 +53,28 @@ const Rooms = ({
             />
           ))
         }
-        <ListItem containerStyle={{backgroundColor: '#aaa'}}
+        <ListItem containerStyle={{backgroundColor: '#eee'}}
           key={"addRoom"}
           title={"Add a New Room"}
           onPress={showAddRoomModal}
         />
         <Modal isVisible={isAddRoomModalVisible}>
           <View style={styles.modalContent}>
-            <Text>Name of New Room:</Text>
             <TextInput
               style={styles.input}
               underlineColorAndroid="transparent"
-              placeholder="Room Name"
+              placeholder="Add a name"
               onChangeText={(text)=>updateNewRoomName(text)}
             />
-            <TouchableOpacity onPress={handleSubmitAddRoom}>
-              <Text style={styles.send}>Send</Text>
-            </TouchableOpacity>
-            {this.renderButton('Cancel', hideAddRoomModal)}
+            <View style={styles.buttons}>
+              <TouchableOpacity onPress={handleSubmitAddRoom}>
+                <Text style={styles.send}>Send</Text>
+              </TouchableOpacity>
+              {/* {this.renderButton('Cancel', hideAddRoomModal)} */}
+              <TouchableOpacity onPress={hideAddRoomModal}>
+                <Text style={styles.send}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </Modal>
       </List>
@@ -87,31 +91,54 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  row: {
-    flexDirection: 'row',
-    padding: 20,
+  // row: {
+  //   flexDirection: 'row',
+  //   padding: 20,
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: '#eee',
+  // },
+  // avatar: {
+  //   borderRadius: 20,
+  //   width: 40,
+  //   height: 40,
+  //   marginRight: 10,
+  // },
+  // rowText: {
+  //   flex: 1,
+  // },
+  // roomName: {
+  //   fontSize: 28,
+  // },
+  // src/styles.js
+  // listItem: {
+  //   flexDirection: 'row',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'center',
+    // width: Dimensions.get('window').width,
+  //   padding: 10
+  // },
+  modalContent: {
+    // flexDirection: 'row',
+    backgroundColor: '#eee',
+    
+  },
+  buttons: {
+    flexDirection: 'row'
+  },
+  input: {
+    paddingHorizontal: 20,
+    marginTop: 20,
+    fontSize: 18,
+    flexGrow: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#eee',
   },
-  avatar: {
-    borderRadius: 20,
-    width: 40,
-    height: 40,
-    marginRight: 10,
-  },
-  rowText: {
-    flex: 1,
-  },
-  roomName: {
-    fontSize: 28,
-  },
-  // src/styles.js
-  listItem: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    // width: Dimensions.get('window').width,
-    padding: 10
+  send: {
+    alignSelf: 'center',
+    color: 'lightseagreen',
+    fontSize: 16,
+    fontWeight: 'bold',
+    padding: 20,
   },
 });
 export default Rooms;

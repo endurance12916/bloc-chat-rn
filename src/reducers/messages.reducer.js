@@ -2,7 +2,7 @@ const initialState = {
   isFetchingMessages: false,
   messages: [],
   isAddingMessageToServer: false,
-  currentMessage: 'default message'
+  currentMessage: ''
 }
 
 export const messagesReducer = (state = initialState, action) => {

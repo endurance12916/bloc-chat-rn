@@ -15,11 +15,15 @@ class RoomsScreen extends Component {
   }
 
   handleSubmitAddRoom = () => {
-    let id = this.props.rooms.length||0;
-    let newRoom = {id: 'room '+ id, name: this.props.newRoomName};
-    this.props.hideAddRoomModal();;
-    this.props.addRoom(newRoom);
-    this.props.setActiveRoom(newRoom);
+    if (this.props.newRoomName==='') {
+      return alert('Room name cannot be empty');
+    } else {
+      let id = this.props.rooms.length||0;
+      let newRoom = {id: 'room '+ id, name: this.props.newRoomName};
+      this.props.hideAddRoomModal();;
+      this.props.addRoom(newRoom);
+      this.props.setActiveRoom(newRoom);
+    }
   }
 
   render() {

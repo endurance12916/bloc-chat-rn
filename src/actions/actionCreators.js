@@ -101,18 +101,23 @@ const fetchMessagesFulfilledAction = (message) => ({
 });
 
 export const addMessage = (message, roomId) => {
-  Object.keys(message).forEach((key) => (message[key] == null) && delete message[key]); // A simple one-liner to remove the items 'inline' without assignment. This is to solve the error of firebase: first argument contains undefined in property
-  return function (dispatch) {
-    console.log('addMessage action called')
-    dispatch(addMessageRequestedAction());
-    const messagesRef = firebase.database().ref('messages/'+roomId+'/')
-    messagesRef.push(message)
-            .then(() => {
-              dispatch(addMessageFulfilledAction());
-            })
-            .catch((error) => {
-              dispatch(addMessageRejectedAction());
-            });
+  // Object.keys(message).forEach((key) => (message[key] == null) && delete message[key]); // A simple one-liner to remove the items 'inline' without assignment. This is to solve the error of firebase: first argument contains undefined in property
+  return (dispatch, getState) => { // add getState here so the action can access state tree
+    const state = getState();
+    if (_.isEmpty(state.currentMessage)) {
+      return alert('Message cannot be empty');
+    } else {
+      console.log('addMessage action called')
+      dispatch(addMessageRequestedAction());
+      const messagesRef = firebase.database().ref('messages/'+roomId+'/')
+      messagesRef.push(message)
+              .then(() => {
+                dispatch(addMessageFulfilledAction());
+              })
+              .catch((error) => {
+                dispatch(addMessageRejectedAction());
+              });
+   }
   }
 }
 

@@ -27,7 +27,8 @@ const ChatMessages = ({
 }) => {
   return (
     <View style={styles.container}>
-    <ScrollView>
+    <ScrollView style={{flex:1}}> 
+    {/* adding flex:1 here instead of flexgrow:1 to prevent footer from being pushed out of screen/disappear */}
       {
         messages.map((message, i) => (
           <View style={styles.rowText} key={i}>
