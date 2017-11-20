@@ -104,7 +104,7 @@ export const addMessage = (message, roomId) => {
   // Object.keys(message).forEach((key) => (message[key] == null) && delete message[key]); // A simple one-liner to remove the items 'inline' without assignment. This is to solve the error of firebase: first argument contains undefined in property
   return (dispatch, getState) => { // add getState here so the action can access state tree
     const state = getState();
-    if (_.isEmpty(state.currentMessage)) {
+    if (state.messagesReducer.currentMessage==='') {
       return alert('Message cannot be empty');
     } else {
       console.log('addMessage action called')

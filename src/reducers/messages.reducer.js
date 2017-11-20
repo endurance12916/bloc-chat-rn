@@ -24,9 +24,9 @@ export const messagesReducer = (state = initialState, action) => {
       return {...state, isAddingMessageToServer: true};
     case 'ADD_MESSAGE_FULFILLED':
       console.log("reducer - isAddingMessageToServer: false, add message fulfilled");
-      return {...state, isAddingMessageToServer: false}
+      return {...state, isAddingMessageToServer: false, currentMessage: ''}
     case 'UPDATE_CURRENT_MESSAGE':
-      // console.log("reducer - is updating current message");
+      console.log("reducer - is updating current message", action.text);
       return {...state, currentMessage: action.text};
     default:
       return state
