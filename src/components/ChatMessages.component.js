@@ -41,7 +41,10 @@ const ChatMessages = ({
         ))
       }
     </ScrollView>
-      <KeyboardAvoidingView behavior="padding">
+      <KeyboardAvoidingView 
+        behavior="padding"
+        keyboardVerticalOffset={64}
+      >
         <View style={styles.footer}>
           <TextInput
             ref={ref => this.textInputRef = ref}

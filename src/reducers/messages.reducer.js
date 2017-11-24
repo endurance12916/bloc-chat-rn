@@ -11,7 +11,7 @@ export const messagesReducer = (state = initialState, action) => {
       console.log("reducer - isFetchingMessages: true");
       return {...state, isFetchingMessages: true};
     case 'FETCH_MESSAGES_FULFILLED':
-      console.log("reducer - isFetchingMessages: false, fetch Messages/add Message fulfilled");
+      console.log("reducer - isFetchingMessages: false, fetch Messages fulfilled");
       return {...state, 
         isFetchingMessages: false,
         messages: [...state.messages, createMessage(state, action)]

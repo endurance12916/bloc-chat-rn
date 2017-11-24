@@ -80,7 +80,7 @@ export const setActiveRoom = (room) => {
   return function (dispatch) {
     dispatch(removeDisplayedMessagesAction());
     dispatch(setActiveRoomAction(room));
-    dispatch(subscribeToMessages(room.id)); //maybe double counting here?
+    dispatch(subscribeToMessages(room.id));
   }
 }
 
@@ -92,6 +92,14 @@ const subscribeToMessages = (roomId) => {
       dispatch(fetchMessagesFulfilledAction(snap.val())
     )}
     );
+  }
+}
+
+export const unsubscribeToMessages = (roomId) => {
+  return function(dispatch) {
+    firebase.database()
+    .ref('messages/'+roomId+'/')
+    .off();
   }
 }
 
