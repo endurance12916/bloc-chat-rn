@@ -17,6 +17,14 @@ export const subscribeToRooms = () => {
   }
 }
 
+export const unsubscribeToRooms = () => {
+  return function(dispatch) {
+    firebase.database()
+    .ref('rooms/')
+    .off();
+  }
+}
+
 export const removeDisplayedRooms = () => ({ // this function works as unsubscribe
   type: 'REMOVE_DISPLAYED_ROOMS'
 });

@@ -9,10 +9,6 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  // KeyboardAvoidingView,
-  // StatusBar,
-  // FlatList,
-  // Image,
 } from 'react-native';
 import Modal from 'react-native-modal'
 
@@ -27,9 +23,6 @@ renderButton = (text, onPress) => (
 const Rooms = ({
   handleSubmitAddRoom,
   rooms,
-  // isFetchingRooms,
-  // activeRoom,
-  // subscribeToRooms, 
   isAddRoomModalVisible,
   showAddRoomModal, 
   hideAddRoomModal,

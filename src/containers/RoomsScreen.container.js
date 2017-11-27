@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { removeDisplayedRooms, subscribeToRooms, showAddRoomModal, hideAddRoomModal, updateNewRoomName, addRoom, setActiveRoom } from '../actions/actionCreators';
+import { removeDisplayedRooms, subscribeToRooms, unsubscribeToRooms, showAddRoomModal, hideAddRoomModal, updateNewRoomName, addRoom, setActiveRoom } from '../actions/actionCreators';
 import Rooms from '../components/Rooms.component';
 
 class RoomsScreen extends Component {
@@ -12,6 +12,7 @@ class RoomsScreen extends Component {
   componentWillUnmount() {
     console.log('unmount RoomsScreen and unsubscribe')
     this.props.removeDisplayedRooms();
+    this.props.unsubscribeToRooms();
   }
 
   handleSubmitAddRoom = () => {
@@ -44,6 +45,7 @@ export default connect(
   (dispatch) => bindActionCreators({ 
     subscribeToRooms, 
     removeDisplayedRooms,
+    unsubscribeToRooms,
     showAddRoomModal, 
     hideAddRoomModal,
     updateNewRoomName,
